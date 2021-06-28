@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello World</title>
+</head>
+<body>
+
+
+<form action='/text_clean' method='post'>
+    <hr>
+    <b>Enter the keywords in CSV format</b>
+
+    <br>
+  <label for="fname">Enter Keywords you want to search:</label><br>
+  <input type="text" id="fname" name="fname"><br>
+  <input type="submit" value="submit">
+</form>
+
+<br>
+
+
+
+{% if total_docs %}
+<table style="width:300px">
+  <tr>
+    <th>Key</th>
+    <th>Is Present</th>
+    <th>Document</th>
+      <th>Start</th>
+      <th>End</th>
+  </tr>
+{% for k, (v, st, end) in total_docs %}
+
+
+  <tr>
+    <td>{{k}}</td>
+    <td>is available</td>
+    <td>{{v}}</td>
+      <td>{{st}}</td>
+      <td>{{end}}</td>
+  </tr>
+
+
+<br>
+{% endfor %}
+    </table>
+{% endif %}
+
+{% if filename_%}
+<b>File Uploaded</b>
+{% endif %}
+<hr>
+<b>Want to upload a new text file</b>
+<form action = "/upload_file" method = "POST" enctype = "multipart/form-data">
+    <label for="myfile"><b>Select a file (only txt)  </b></label>
+    <input type="file" id="myfile" name="myfile">
+    <input type="submit">
+</form>
+</body>
+</html>
