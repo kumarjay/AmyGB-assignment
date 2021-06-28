@@ -52,8 +52,6 @@ def text_clean():
 
     results = multi_processing(search_text)
 
-    for k,(v, start, end) in results.items():
-        print(k , ' is avail in ', v, 'st', start, end)
     return render_template('index.html', total_docs=results.items())
 
 
