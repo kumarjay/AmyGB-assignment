@@ -22,23 +22,23 @@
 
 
 {% if total_docs %}
-<table style="width:300px">
+<table style="width:600px">
   <tr>
     <th>Key</th>
     <th>Is Present</th>
     <th>Document</th>
-      <th>Start</th>
-      <th>End</th>
+      <th>Starts at</th>
+      <th>Ends at</th>
   </tr>
 {% for k, (v, st, end) in total_docs %}
 
 
   <tr>
-    <td>{{k}}</td>
-    <td>is available</td>
-    <td>{{v}}</td>
-      <td>{{st}}</td>
-      <td>{{end}}</td>
+    <td>Text <b>{{k}} </b></td>
+    <td>is available in</td>
+    <td><b>{{v}}</b> document</td>
+      <td>from {{st}}</td>
+      <td>to {{end}}</td>
   </tr>
 
 
