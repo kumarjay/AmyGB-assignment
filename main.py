@@ -35,13 +35,12 @@ def search_text(texts):
 def multi_processing(texts):
     texts = re.split(',+', texts)
 
-    with concurrent.futures.ThreadPoolExecutor() as exe:
+    with concurrent.futures.ProcessPoolExecutor() as exe:
         doc_list = {}
 
         results = exe.map(search_text, texts)
 
         for res in results:
-            print('resss.....', type(res))
             doc_list.update(res)
     return doc_list
 
@@ -49,9 +48,7 @@ def multi_processing(texts):
 @app.route('/text_clean', methods=['GET', 'POST'])
 def text_clean():
     search_text = request.form.get('fname')
-
     results = multi_processing(search_text)
-
     return render_template('index.html', total_docs=results.items())
 
 
@@ -59,8 +56,6 @@ def text_clean():
 def upload_file():
     uploaded_file = request.files['myfile']
     uploaded_file.save(os.path.join('data', uploaded_file.filename))
-    # response= s3_bucket(uploaded_file.filename)
-
     return render_template('index.html', filename_= uploaded_file.filename)
 
 
